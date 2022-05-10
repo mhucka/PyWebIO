@@ -246,11 +246,13 @@ def single_input(item_spec, valid_func, preprocess_func, onchange_func):
     item_spec.setdefault('auto_focus', True)  # 如果没有设置autofocus参数，则开启参数  todo CHECKBOX, RADIO 特殊处理
 
     spec = dict(label=label, inputs=[item_spec])
+    if 'cancelable' in item_spec:
+        spec['cancelable'] = item_spec.get('cancelable')
     data = yield input_control(spec=spec,
                                preprocess_funcs={name: preprocess_func},
                                item_valid_funcs={name: valid_func},
                                onchange_funcs={name: onchange_func})
-    return data[name]
+    return data[name] if data else None
 
 
 @chose_impl

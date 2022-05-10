@@ -607,6 +607,7 @@ def file_upload(label='', accept=None, name=None, placeholder='Choose file', mul
     item_spec['type'] = 'file'
     item_spec['max_size'] = parse_file_size(max_size) or platform_setting.MAX_PAYLOAD_SIZE
     item_spec['max_total_size'] = parse_file_size(max_total_size) or platform_setting.MAX_PAYLOAD_SIZE
+    item_spec['cancelable'] = True
 
     if platform_setting.MAX_PAYLOAD_SIZE:
         if item_spec['max_size'] > platform_setting.MAX_PAYLOAD_SIZE or \
