@@ -3,6 +3,7 @@ import fnmatch
 import json
 import logging
 import os
+import sys
 import threading
 import time
 import webbrowser
@@ -222,6 +223,7 @@ def _webio_handler(applications=None, cdn=True, reconnect_timeout=0, check_origi
                 elif self.session:
                     cls._session_expire[self.session_id] = time.time() + reconnect_timeout
             logger.debug("WebSocket closed")
+            sys.exit()
 
     return WSHandler
 
